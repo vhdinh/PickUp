@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from '../../api.service';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.less']
 })
 export class IndexComponent implements OnInit {
+  users: any;
 
-  constructor() { }
+  constructor(
+    private api: ApiService
+  ) { }
 
   ngOnInit() {
+    this.api.getUsers()
+      .subscribe(res => {
+        console.log('res');
+        this.users = res;
+      }, err => {
+        console.log(err)
+      })
   }
 
 }
