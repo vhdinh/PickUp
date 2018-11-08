@@ -3,7 +3,13 @@ var createError = require('http-errors'),
   path = require('path'),
   favicon = require('serve-favicon'),
   logger = require('morgan'),
-  apiRouter = require('./routes/user');
+  apiRouter = require('./routes/pickUp');
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/pickUp',  { promiseLibrary: require('bluebird') })
+  .then(() =>  console.log('connection successful to pickUp DB'))
+.catch((err) => console.error(err));
+
 
 var app = express();
 
